@@ -39,7 +39,7 @@ export default function Home() {
   const isChatGptApp = useIsChatGptApp();
 
   const name = toolOutput?.name;
-  const results = toolOutput?.results || [];
+  const results = (toolOutput?.results || []).slice(0, 10);
   const total = toolOutput?.total || 0;
   const query = toolOutput?.query;
 
@@ -76,15 +76,12 @@ export default function Home() {
 
       <main className="w-full max-w-4xl mx-auto">
         {name && (
-          <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-800 rounded">
-            <h2 className="text-lg font-semibold">{name}</h2>
-            {total > results.length && (
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
-                Showing {results.length} of {total} results
-              </p>
-            )}
-            <div className="text-xs text-slate-500 dark:text-slate-600 mt-2 font-mono">
-              results: {results.length} | total: {total} | query: {query}
+          <div className="mb-6">
+            <div className="mb-3">
+              <img src="/deezer.svg" alt="Deezer" className="h-8 w-auto" />
+            </div>
+            <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded">
+              <h2 className="text-lg font-semibold">{name}</h2>
             </div>
           </div>
         )}
@@ -92,9 +89,12 @@ export default function Home() {
         {results.length > 0 && (
           <div className="space-y-3">
             {results.map((track: any) => (
-              <div
+              <a
                 key={track.id}
-                className="p-3 border border-slate-200 dark:border-slate-700 rounded flex gap-3"
+                href={track.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 border border-slate-200 dark:border-slate-700 rounded flex gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
                 {track.album?.cover_medium && (
                   <img
@@ -116,7 +116,7 @@ export default function Home() {
                     {String(track.duration % 60).padStart(2, "0")}
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}
@@ -126,6 +126,21 @@ export default function Home() {
             <p className="text-slate-600 dark:text-slate-400">
               No results to display
             </p>
+          </div>
+        )}
+
+        {results.length > 0 && (
+          <div className="mt-6 text-center">
+            <a
+              href={`https://www.deezer.com/search/${encodeURIComponent(
+                query || ""
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded transition-colors"
+            >
+              Listen on Deezer.com
+            </a>
           </div>
         )}
 
