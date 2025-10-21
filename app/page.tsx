@@ -77,11 +77,12 @@ export default function Home() {
       <main className="w-full max-w-4xl mx-auto">
         {name && (
           <div className="mb-6">
-            <div className="mb-3">
-              <img src="/deezer.svg" alt="Deezer" className="h-8 w-auto" />
-            </div>
-            <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded">
-              <h2 className="text-lg font-semibold">{name}</h2>
+            <div className="text-center mb-6">
+              <img
+                src="/deezer.svg"
+                alt="Deezer"
+                className="h-8 w-auto inline-block"
+              />
             </div>
           </div>
         )}
@@ -137,7 +138,14 @@ export default function Home() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded transition-colors"
+              className="inline-block px-4 py-2 text-white font-medium rounded transition-colors"
+              style={{ backgroundColor: "#A239FF" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#8b24d6")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#A239FF")
+              }
             >
               Listen on Deezer.com
             </a>
