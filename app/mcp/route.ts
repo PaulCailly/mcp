@@ -115,7 +115,7 @@ const handler = createMcpHandler(async (server: any) => {
     async ({ query }: { query: string }) => {
       const url = `https://api.deezer.com/search?q=${encodeURIComponent(
         String(query ?? "")
-      )}`;
+      )}&limit=100`;
 
       try {
         const response = await fetch(url, {

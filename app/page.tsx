@@ -16,6 +16,8 @@ export default function Home() {
     result?: {
       structuredContent?: {
         name?: string;
+        query?: string;
+        total?: number;
         results?: Array<{
           id: number;
           title: string;
@@ -36,6 +38,8 @@ export default function Home() {
 
   const name = toolOutput?.result?.structuredContent?.name || toolOutput?.name;
   const results = toolOutput?.result?.structuredContent?.results || [];
+  const total = toolOutput?.result?.structuredContent?.total || 0;
+  const query = toolOutput?.result?.structuredContent?.query;
 
   return (
     <div
@@ -72,6 +76,11 @@ export default function Home() {
         {name && (
           <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-800 rounded">
             <h2 className="text-lg font-semibold">{name}</h2>
+            {total > results.length && (
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                Showing {results.length} of {total} results
+              </p>
+            )}
           </div>
         )}
 
