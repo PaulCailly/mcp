@@ -26,7 +26,14 @@ export default function Home() {
           duration: number;
           preview: string;
           artist?: { name: string; link: string };
-          album?: { title: string; cover: string };
+          album?: { 
+            title: string; 
+            cover: string;
+            cover_small: string;
+            cover_medium: string;
+            cover_big: string;
+            cover_xl: string;
+          };
         }>;
       };
     };
@@ -81,6 +88,9 @@ export default function Home() {
                 Showing {results.length} of {total} results
               </p>
             )}
+            <div className="text-xs text-slate-500 dark:text-slate-600 mt-2 font-mono">
+              results: {results.length} | total: {total} | query: {query}
+            </div>
           </div>
         )}
 
