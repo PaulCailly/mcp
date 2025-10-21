@@ -13,40 +13,35 @@ import {
 export default function Home() {
   const toolOutput = useWidgetProps<{
     name?: string;
-    result?: {
-      structuredContent?: {
-        name?: string;
-        query?: string;
-        total?: number;
-        results?: Array<{
-          id: number;
-          title: string;
-          title_short: string;
-          link: string;
-          duration: number;
-          preview: string;
-          artist?: { name: string; link: string };
-          album?: {
-            title: string;
-            cover: string;
-            cover_small: string;
-            cover_medium: string;
-            cover_big: string;
-            cover_xl: string;
-          };
-        }>;
+    query?: string;
+    total?: number;
+    results?: Array<{
+      id: number;
+      title: string;
+      title_short: string;
+      link: string;
+      duration: number;
+      preview: string;
+      artist?: { name: string; link: string };
+      album?: {
+        title: string;
+        cover: string;
+        cover_small: string;
+        cover_medium: string;
+        cover_big: string;
+        cover_xl: string;
       };
-    };
+    }>;
   }>();
   const maxHeight = useMaxHeight() ?? undefined;
   const displayMode = useDisplayMode();
   const requestDisplayMode = useRequestDisplayMode();
   const isChatGptApp = useIsChatGptApp();
 
-  const name = toolOutput?.result?.structuredContent?.name || toolOutput?.name;
-  const results = toolOutput?.result?.structuredContent?.results || [];
-  const total = toolOutput?.result?.structuredContent?.total || 0;
-  const query = toolOutput?.result?.structuredContent?.query;
+  const name = toolOutput?.name;
+  const results = toolOutput?.results || [];
+  const total = toolOutput?.total || 0;
+  const query = toolOutput?.query;
 
   return (
     <div
