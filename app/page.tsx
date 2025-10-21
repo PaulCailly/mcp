@@ -80,20 +80,27 @@ export default function Home() {
             {results.map((track: any) => (
               <div
                 key={track.id}
-                className="p-3 border border-slate-200 dark:border-slate-700 rounded"
+                className="p-3 border border-slate-200 dark:border-slate-700 rounded flex gap-3"
               >
-                <div className="font-medium text-slate-900 dark:text-slate-100">
-                  {track.title}
-                </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">
-                  {track.artist?.name && `Artist: ${track.artist.name}`}
-                </div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">
-                  {track.album?.title && `Album: ${track.album.title}`}
-                </div>
-                <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">
-                  Duration: {Math.floor(track.duration / 60)}:
-                  {String(track.duration % 60).padStart(2, "0")}
+                {track.album?.cover_medium && (
+                  <img
+                    src={track.album.cover_medium}
+                    alt={track.album.title}
+                    className="w-12 h-12 rounded flex-shrink-0"
+                  />
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-slate-900 dark:text-slate-100 truncate">
+                    {track.title}
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400 truncate">
+                    {track.artist?.name}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-500">
+                    {track.album?.title && `${track.album.title} • `}
+                    {Math.floor(track.duration / 60)}:
+                    {String(track.duration % 60).padStart(2, "0")}
+                  </div>
                 </div>
               </div>
             ))}
