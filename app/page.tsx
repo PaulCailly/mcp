@@ -126,6 +126,14 @@ export default function Home() {
           </div>
         )}
 
+        {!results.length && name && (
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded">
+            <p className="text-slate-600 dark:text-slate-400">
+              No results to display
+            </p>
+          </div>
+        )}
+
         {!isChatGptApp && (
           <div className="mt-8 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg px-4 py-3">
             <p className="text-sm text-blue-900 dark:text-blue-100">
