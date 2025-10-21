@@ -26,8 +26,8 @@ export default function Home() {
           duration: number;
           preview: string;
           artist?: { name: string; link: string };
-          album?: { 
-            title: string; 
+          album?: {
+            title: string;
             cover: string;
             cover_small: string;
             cover_medium: string;
